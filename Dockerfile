@@ -9,15 +9,15 @@ RUN mkdir -p /tmp/src && \
     wget http://nginx.org/download/${NGINX_VERSION}.tar.gz && \
     tar -zxvf ${NGINX_VERSION}.tar.gz && \
     wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz && \
-    tar -zxvf ngx_cache_purge-2.3.tar.gz && \
-    mkdir -p /var/nginx/cache/one
+    tar -zxvf ngx_cache_purge-2.3.tar.gz
 RUN cd /tmp/src/${NGINX_VERSION} && \
     ./configure \
         --with-http_ssl_module \
         --with-http_gzip_static_module \
-        --prefix=/usr/local/nginx \
-        --http-log-path=/var/log/nginx/access.log \
-        --error-log-path=/var/log/nginx/error.log \
+        --prefix=/etc/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --http-log-path=/app/logs/access.log \
+        --error-log-path=/app/logs/error.log \
         --sbin-path=/usr/local/sbin/nginx \
         --with-http_sub_module && \
     make && \
@@ -27,11 +27,15 @@ RUN cd /tmp/src/${NGINX_VERSION} && \
     rm -rf /var/cache/apk/*
 
 # forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /app/logs/access.log
+RUN ln -sf /dev/stderr /app/logs/error.log
 
 WORKDIR /app
 VOLUME /app
+
+# copy app source to image
+ADD . .
+ADD conf/nginx.conf /etc/nginx/
 
 EXPOSE 80 443
 
