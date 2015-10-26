@@ -3,14 +3,14 @@ MAINTAINER WangXian <xian366@126.com>
 
 ENV NGINX_VERSION nginx-1.8.0
 
-RUN apk --update add openssl-dev pcre-dev zlib-dev wget build-base
-RUN mkdir -p /tmp/src && \
+RUN apk --update add openssl-dev pcre-dev zlib-dev wget build-base && \
+    mkdir -p /tmp/src && \
     cd /tmp/src && \
     wget http://nginx.org/download/${NGINX_VERSION}.tar.gz && \
     tar -zxvf ${NGINX_VERSION}.tar.gz && \
     wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz && \
-    tar -zxvf ngx_cache_purge-2.3.tar.gz
-RUN cd /tmp/src/${NGINX_VERSION} && \
+    tar -zxvf ngx_cache_purge-2.3.tar.gz && \
+    cd /tmp/src/${NGINX_VERSION} && \
     ./configure \
         --with-http_ssl_module \
         --with-http_gzip_static_module \
