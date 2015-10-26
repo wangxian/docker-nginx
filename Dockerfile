@@ -27,17 +27,15 @@ RUN apk --update add openssl-dev pcre-dev zlib-dev wget build-base && \
     rm -rf /tmp/src && \
     rm -rf /var/cache/apk/*
 
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /app/logs/access.log
-RUN ln -sf /dev/stderr /app/logs/error.log
 
 WORKDIR /app
 VOLUME /app
 
-# copy app source to image
 ADD . .
 ADD conf/nginx.conf /etc/nginx/
+ADD startup.sh /startup.sh
+
+RUN mkdir -p /app/logs
 
 EXPOSE 80 443
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/startup.sh"]
