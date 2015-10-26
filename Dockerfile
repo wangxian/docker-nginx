@@ -1,4 +1,4 @@
-FROM wangxian/alpine-php:latest
+FROM alpine:latest
 MAINTAINER WangXian <xian366@126.com>
 
 ENV NGINX_VERSION nginx-1.8.0
@@ -19,6 +19,7 @@ RUN cd /tmp/src/${NGINX_VERSION} && \
         --http-log-path=/app/logs/access.log \
         --error-log-path=/app/logs/error.log \
         --sbin-path=/usr/local/sbin/nginx \
+        --add-module=/tmp/src/ngx_cache_purge-2.3 \
         --with-http_sub_module && \
     make && \
     make install && \
