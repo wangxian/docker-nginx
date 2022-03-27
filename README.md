@@ -8,8 +8,9 @@ docker buildx build -t wangxian/nginx:1.20.2 -t wangxian/nginx:latest --platform
 
 
 # run it
-docker run -it --name nginx  --rm -p 8888:80 -v $(pwd):/app wangxian/alpine-nginx
+docker run -it --name nginx --rm -p 8888:80 -v $(pwd):/app/public wangxian/nginx
+docker run -d --name nginx --rm --restart=unless-stopped -p 8888:80 -v $(pwd):/app/public wangxian/nginx
 
 # View docker files
-docker run -it --rm wangxian/alpine-nginx sh
+docker run -it --rm wangxian/nginx sh
 ```
