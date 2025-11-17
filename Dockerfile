@@ -1,5 +1,5 @@
 FROM alpine:3.22
-MAINTAINER WangXian <xian366@126.com>
+LABEL maintainer="WangXian <xian366@126.com>"
 
 RUN apk --update add nginx && \
     rm -rf /var/cache/apk/*
