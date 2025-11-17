@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.20
 MAINTAINER WangXian <xian366@126.com>
 
 RUN apk --update add nginx && \
