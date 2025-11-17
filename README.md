@@ -8,6 +8,7 @@ docker buildx build -t wangxian/nginx:1.20.2 -t wangxian/nginx:latest --platform
 docker buildx build -t wangxian/nginx:1.22.1 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
 docker buildx build -t wangxian/nginx:1.24.0 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
 docker buildx build -t wangxian/nginx:1.26.3 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
+docker buildx build -t wangxian/nginx:1.28.0 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
 
 
 # run it
