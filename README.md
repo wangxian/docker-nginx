@@ -5,6 +5,7 @@ Docker image, contains purge nginx, very small image, quickly for serving static
 ```
 docker build -t wangxian/nginx .
 docker buildx build -t wangxian/nginx:1.20.2 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
+docker buildx build -t wangxian/nginx:1.22.1 -t wangxian/nginx:latest --platform=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64,linux/386 . --push
 
 
 # run it
